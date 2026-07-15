@@ -3,7 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Candela</title>
+    <meta name="theme-color" content="#EEE9DF" />
+    <meta
+      name="description"
+      content="Estudio Candela: una página de tres secciones con navegación flotante."
+    />
+    <title>Estudio Candela</title>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <section id="section-1" class="page-section page-section--palladian" aria-label="Sección 1"></section>
+      <section id="section-2" class="page-section page-section--oatmeal" aria-label="Sección 2"></section>
+      <section id="section-3" class="page-section page-section--palladian" aria-label="Sección 3"></section>
+    </main>
+
+    <nav class="floating-nav" aria-label="Navegación por secciones">
+      <a class="floating-nav__item" href="#section-1" data-section-id="section-1" aria-current="page">
+        sección 1
+      </a>
+      <a class="floating-nav__item" href="#section-2" data-section-id="section-2">sección 2</a>
+      <a class="floating-nav__item" href="#section-3" data-section-id="section-3">sección 3</a>
+    </nav>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

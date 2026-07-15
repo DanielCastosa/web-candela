@@ -1,0 +1,122 @@
+:root {
+  --palladian: #eee9df;
+  --oatmeal: #c9c1b1;
+  --burning-flame: #ffb162;
+  --truffle-trouble: #a35139;
+  --ink: #21180f;
+  --nav-shadow: 0 18px 46px rgb(64 39 20 / 16%);
+  color: var(--ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background: var(--palladian);
+}
+
+.page-section {
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+}
+
+.page-section--palladian {
+  background: var(--palladian);
+}
+
+.page-section--oatmeal {
+  background: var(--oatmeal);
+}
+
+.floating-nav {
+  position: fixed;
+  z-index: 10;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  left: 50%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  width: min(680px, calc(100vw - 48px));
+  height: 72px;
+  padding: 6px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: var(--burning-flame);
+  box-shadow: var(--nav-shadow);
+}
+
+.floating-nav__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.floating-nav__item[aria-current="page"] {
+  color: var(--palladian);
+  background: var(--truffle-trouble);
+}
+
+.floating-nav__item:not([aria-current="page"]):hover {
+  background: rgb(255 255 255 / 18%);
+}
+
+.floating-nav__item:active {
+  transform: scale(0.98);
+}
+
+.floating-nav__item:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: -3px;
+}
+
+@media (max-width: 600px) {
+  .floating-nav {
+    bottom: max(16px, env(safe-area-inset-bottom));
+    gap: 2px;
+    width: calc(100vw - 32px);
+    height: 64px;
+    padding: 5px;
+  }
+
+  .floating-nav__item {
+    padding: 0 4px;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .floating-nav__item {
+    transition: none;
+  }
+}
