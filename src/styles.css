@@ -322,7 +322,7 @@ body {
   max-height: 52vh;
   margin: clamp(34px, 5vh, 60px) auto 0;
   object-fit: contain;
-  mix-blend-mode: multiply;
+  mix-blend-mode: darken;
 }
 
 .site-footer {

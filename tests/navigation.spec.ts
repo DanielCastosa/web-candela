@@ -15,6 +15,18 @@ test("renders the editorial hero with no navigation item selected", async ({ pag
   await expect(page.locator('.floating-nav__item[aria-current="page"]')).toHaveCount(0);
 });
 
+test("serves the latest supplied Candela logo artwork", async ({ page }) => {
+  const checksum = await page.evaluate(async () => {
+    const response = await fetch("/candela-logo.png");
+    const bytes = await response.arrayBuffer();
+    const digest = await crypto.subtle.digest("SHA-256", bytes);
+
+    return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+  });
+
+  expect(checksum).toBe("ec30185cfb0baff79250b1e5e10229875edb1874bbc6ee3b2ac88805984db4b5");
+});
+
 test("configures the supplied Candela favicon", async ({ page }) => {
   const favicon = page.locator('link[rel="icon"]');
 
@@ -75,6 +87,7 @@ test("renders the Hollywood address and the illustrated street", async ({ page }
     page.getByText("Nos encontramos en Hollywood, c/ Hollywood Boulevard, 24", { exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("img", { name: "Ilustración de Hollywood Boulevard" })).toBeVisible();
+  await expect(page.locator(".location__illustration")).toHaveCSS("mix-blend-mode", "darken");
 });
 
 test("keeps the populated sections inside a mobile viewport", async ({ page }) => {
