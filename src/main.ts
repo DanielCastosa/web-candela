@@ -1,15 +1,21 @@
 import "./styles.css";
 
-import { pickActiveSection, sectionIds, type SectionId } from "./scroll-spy";
+import {
+  pickActiveSection,
+  sectionIds,
+  surfaceIds,
+  type ActiveSection,
+  type SectionId,
+} from "./scroll-spy";
 
-const sections = sectionIds.map((sectionId) => {
-  const section = document.getElementById(sectionId);
+const surfaces = surfaceIds.map((surfaceId) => {
+  const surface = document.getElementById(surfaceId);
 
-  if (!(section instanceof HTMLElement)) {
-    throw new Error(`No se encontró la sección ${sectionId}`);
+  if (!(surface instanceof HTMLElement)) {
+    throw new Error(`No se encontró la superficie ${surfaceId}`);
   }
 
-  return section;
+  return surface;
 });
 
 const navigationItems = new Map<SectionId, HTMLAnchorElement>();
@@ -22,14 +28,21 @@ for (const item of document.querySelectorAll<HTMLAnchorElement>("[data-section-i
   }
 }
 
-let activeSection: SectionId = sectionIds.includes(window.location.hash.slice(1) as SectionId)
-  ? (window.location.hash.slice(1) as SectionId)
-  : "section-1";
+const themes: Record<SectionId | "hero", { background: string; accent: string }> = {
+  hero: { background: "#ffe4ed", accent: "#f86494" },
+  "section-1": { background: "#e8ffdb", accent: "#52b68d" },
+  "section-2": { background: "#eccfff", accent: "#784ea6" },
+  "section-3": { background: "#fff6be", accent: "#fbcb18" },
+};
 
-const visibility = new Map<string, number>(sectionIds.map((sectionId) => [sectionId, 0]));
+let activeSection: ActiveSection = sectionIds.includes(window.location.hash.slice(1) as SectionId)
+  ? (window.location.hash.slice(1) as SectionId)
+  : null;
+
+const visibility = new Map<string, number>(surfaceIds.map((surfaceId) => [surfaceId, 0]));
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-function setActiveSection(sectionId: SectionId): void {
+function setActiveSection(sectionId: ActiveSection): void {
   activeSection = sectionId;
 
   for (const [itemSectionId, item] of navigationItems) {
@@ -39,6 +52,10 @@ function setActiveSection(sectionId: SectionId): void {
       item.removeAttribute("aria-current");
     }
   }
+
+  const theme = themes[sectionId ?? "hero"];
+  document.documentElement.style.setProperty("--nav-background", theme.background);
+  document.documentElement.style.setProperty("--nav-accent", theme.accent);
 }
 
 setActiveSection(activeSection);
@@ -69,8 +86,8 @@ const observer = new IntersectionObserver(
   },
 );
 
-for (const section of sections) {
-  observer.observe(section);
+for (const surface of surfaces) {
+  observer.observe(surface);
 }
 
 window.addEventListener("hashchange", () => {

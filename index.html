@@ -3,24 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#EEE9DF" />
+    <meta name="theme-color" content="#FFE4ED" />
     <meta
       name="description"
-      content="Estudio Candela: una página de tres secciones con navegación flotante."
+      content="Estudio Candela: moda con alma, estilo con luz."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Molle:ital@1&display=swap"
+      rel="stylesheet"
     />
     <title>Estudio Candela</title>
   </head>
   <body>
     <main>
-      <section id="section-1" class="page-section page-section--palladian" aria-label="Sección 1"></section>
-      <section id="section-2" class="page-section page-section--oatmeal" aria-label="Sección 2"></section>
-      <section id="section-3" class="page-section page-section--palladian" aria-label="Sección 3"></section>
+      <header id="hero" class="hero" aria-labelledby="hero-title">
+        <div class="hero__content">
+          <p class="hero__subtitle">Moda con alma,<br />estilo con luz.</p>
+          <h1 id="hero-title" class="hero__title">Candela</h1>
+        </div>
+        <img
+          class="hero__mannequin"
+          src="/maniqui1.png"
+          alt="Maniquí con vestido de satén"
+          width="804"
+          height="1944"
+          fetchpriority="high"
+        />
+      </header>
+
+      <section id="section-1" class="page-section page-section--green" aria-label="Sección 1"></section>
+      <section id="section-2" class="page-section page-section--purple" aria-label="Sección 2"></section>
+      <section id="section-3" class="page-section page-section--yellow" aria-label="Sección 3"></section>
     </main>
 
     <nav class="floating-nav" aria-label="Navegación por secciones">
-      <a class="floating-nav__item" href="#section-1" data-section-id="section-1" aria-current="page">
-        sección 1
-      </a>
+      <a class="floating-nav__item" href="#section-1" data-section-id="section-1">sección 1</a>
       <a class="floating-nav__item" href="#section-2" data-section-id="section-2">sección 2</a>
       <a class="floating-nav__item" href="#section-3" data-section-id="section-3">sección 3</a>
     </nav>
