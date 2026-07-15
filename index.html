@@ -33,9 +33,137 @@
         />
       </header>
 
-      <section id="section-1" class="page-section page-section--green" aria-label="Sección 1"></section>
-      <section id="section-2" class="page-section page-section--purple" aria-label="Sección 2"></section>
-      <section id="section-3" class="page-section page-section--yellow" aria-label="Sección 3"></section>
+      <section
+        id="section-1"
+        class="page-section page-section--green story"
+        aria-labelledby="story-title"
+      >
+        <div class="section-shell story__content">
+          <div class="section-heading">
+            <i class="ph-fill ph-heart section-heading__heart" aria-hidden="true"></i>
+            <h2 id="story-title" class="section-heading__title">¿Cómo nacimos?</h2>
+          </div>
+          <p class="story__copy">
+            Con el sueño de una niña de 10 años construimos nuestros almacenes y la gran familia.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="section-2"
+        class="page-section page-section--purple products"
+        aria-labelledby="products-title"
+      >
+        <div class="section-shell products__content">
+          <div class="section-heading">
+            <i class="ph-fill ph-heart section-heading__heart" aria-hidden="true"></i>
+            <h2 id="products-title" class="section-heading__title">Productos</h2>
+          </div>
+
+          <div class="products__stage">
+            <img
+              class="products__mannequin products__mannequin--left"
+              src="/maniqui1.png"
+              alt="Maniquí lateral con vestido de satén"
+              width="804"
+              height="1944"
+              loading="lazy"
+            />
+
+            <div class="products__grid" aria-label="Colección de productos">
+              <figure class="product-card">
+                <img
+                  src="/products/top-rosa.jpg"
+                  alt="Top rosa cruzado"
+                  width="640"
+                  height="794"
+                  loading="lazy"
+                />
+              </figure>
+              <figure class="product-card">
+                <img
+                  src="/products/vestido-verde.jpg"
+                  alt="Vestido largo verde"
+                  width="683"
+                  height="1024"
+                  loading="lazy"
+                />
+              </figure>
+              <figure class="product-card">
+                <img
+                  src="/products/vestido-amarillo.jpg"
+                  alt="Vestido amarillo asimétrico"
+                  width="1200"
+                  height="1200"
+                  loading="lazy"
+                />
+              </figure>
+              <figure class="product-card">
+                <img
+                  src="/products/top-azul.jpg"
+                  alt="Top azul satinado"
+                  width="736"
+                  height="1104"
+                  loading="lazy"
+                />
+              </figure>
+              <figure class="product-card">
+                <img
+                  src="/products/top-crema.jpg"
+                  alt="Top crema palabra de honor"
+                  width="736"
+                  height="736"
+                  loading="lazy"
+                />
+              </figure>
+              <figure class="product-card">
+                <img
+                  src="/products/vestido-lila.jpg"
+                  alt="Vestido corto lila"
+                  width="571"
+                  height="714"
+                  loading="lazy"
+                />
+              </figure>
+            </div>
+
+            <img
+              class="products__mannequin products__mannequin--right"
+              src="/maniqui2.png"
+              alt="Maniquí lateral con vestido lila"
+              width="807"
+              height="1949"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="section-3"
+        class="page-section page-section--yellow location"
+        aria-labelledby="location-title"
+      >
+        <div class="section-shell location__content">
+          <div class="location__copy-block">
+            <div class="section-heading">
+              <i class="ph-fill ph-heart section-heading__heart" aria-hidden="true"></i>
+              <h2 id="location-title" class="section-heading__title">¿Dónde nos encontramos?</h2>
+            </div>
+            <p class="location__address">
+              Nos encontramos en Hollywood, c/ Hollywood Boulevard, 24
+            </p>
+          </div>
+          <img
+            class="location__illustration"
+            src="/hollywood-street.png"
+            alt="Ilustración de Hollywood Boulevard"
+            width="1717"
+            height="916"
+            loading="lazy"
+          />
+        </div>
+      </section>
     </main>
 
     <nav class="floating-nav" aria-label="Navegación por secciones">

@@ -1,8 +1,8 @@
 # Web Candela
 
-Sitio responsive con una cabecera editorial y tres secciones vacías. La navegación flotante queda sin selección en la cabecera e indica dinámicamente la sección visible durante el scroll.
+Sitio editorial responsive para Candela. Incluye una cabecera, la historia de la marca, una galería de seis productos entre dos maniquíes y una sección de ubicación con una ilustración de Hollywood Boulevard.
 
-La cabecera usa Molle, una composición tipográfica de gran formato y el maniquí suministrado. Cada superficie aplica su propia pareja de fondo y acento: rosa, verde, morado y amarillo.
+La navegación flotante queda sin selección en la cabecera e indica dinámicamente la sección visible durante el scroll. Los títulos usan Molle, los corazones pertenecen a Phosphor Icons y cada superficie aplica su propia pareja de fondo y acento: rosa, verde, morado y amarillo.
 
 ## Desarrollo
 
