@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add the approved Modas hero lockup, favicon, story mascot and copyright footer while preserving the existing responsive navigation and section design.
+**Goal:** Add the approved Modas hero lockup, illustrated header logo, descriptive menu labels, favicon, story mascot and copyright footer while preserving the existing responsive navigation and section design.
 
-**Architecture:** Continue using the current semantic single-page HTML and shared CSS design tokens. Add only two static raster assets, one hero wordmark wrapper, one story body grid and one semantic footer; no new runtime state is needed.
+**Architecture:** Continue using the current semantic single-page HTML and shared CSS design tokens. Add three static raster assets, one hero wordmark wrapper, one positioned header logo, one story body grid and one semantic footer; no new runtime state is needed.
 
 **Tech Stack:** HTML5, CSS, TypeScript, Vite, Vitest, Playwright, Phosphor Icons, Vercel.
 
@@ -14,7 +14,7 @@
 - Favicon source is the supplied 150×150 transparent PNG.
 - Story copy and title remain unchanged.
 - Footer copy is exactly `© 2026 Modas Candela`.
-- Preserve the existing palettes, section order, menu labels and scrollspy behavior.
+- Preserve the existing palettes, section order and scrollspy behavior; rename the menu links to `Historia`, `Productos` and `Ubicación`.
 - Mobile verification viewport is 390×844 with no horizontal overflow.
 
 ---
@@ -26,9 +26,11 @@
 
 **Interfaces:**
 - Consumes: existing DOM selectors and Playwright configuration.
-- Produces: assertions for `.hero__brand-prefix`, `link[rel="icon"]`, `.story__mascot` and `.site-footer`.
+- Produces: assertions for `.hero__brand-prefix`, `.hero__logo`, descriptive menu labels, `link[rel="icon"]`, `.story__mascot` and `.site-footer`.
 
 - [ ] Add assertions that the hero contains visible `Modas`, no old subtitle, and the existing `Candela` h1.
+- [ ] Require the supplied logo and verify its mobile bounds.
+- [ ] Require menu labels `Historia`, `Productos` and `Ubicación` without changing their destinations.
 - [ ] Add a favicon test that expects `/favicon.png` and `image/png`.
 - [ ] Extend the story test to require `Personaje vegetal de Modas Candela`.
 - [ ] Add a footer test for the exact copyright and dark background.
@@ -40,13 +42,16 @@
 **Files:**
 - Create: `public/favicon.png`
 - Create: `public/candela-leaf-mascot.png`
+- Create: `public/candela-logo.png`
 - Modify: `index.html`
 
 **Interfaces:**
 - Consumes: the supplied PNG files.
-- Produces: `/favicon.png`, `/candela-leaf-mascot.png`, `.hero__wordmark`, `.story__body`, `.story__mascot`, `.site-footer`.
+- Produces: `/favicon.png`, `/candela-leaf-mascot.png`, `/candela-logo.png`, `.hero__wordmark`, `.hero__logo`, `.story__body`, `.story__mascot`, `.site-footer`.
 
 - [ ] Copy the supplied favicon and mascot without altering their pixels or alpha channels.
+- [ ] Copy the supplied 1536×1024 transparent logo and add it to the upper-left of the hero with meaningful alt text.
+- [ ] Rename the navigation links to `Historia`, `Productos` and `Ubicación`.
 - [ ] Add `<link rel="icon" type="image/png" sizes="150x150" href="/favicon.png" />`.
 - [ ] Replace `.hero__subtitle` with a `.hero__wordmark` containing `<p class="hero__brand-prefix">Modas</p>` and the existing h1.
 - [ ] Wrap story copy and mascot in `.story__body`; use the exact alt text and declared 700×700 dimensions.
@@ -63,6 +68,7 @@
 
 - [ ] Replace obsolete subtitle rules with `.hero__wordmark` and `.hero__brand-prefix` rules using Molle and the pink accent.
 - [ ] Keep the wordmark at the lower-left and tune desktop spacing so `Modas` sits immediately above `Candela`.
+- [ ] Position and scale `.hero__logo` responsively without overlap or horizontal overflow.
 - [ ] Add `.story__body` as a two-column grid and move the existing story margin/scale onto the new layout.
 - [ ] Size `.story__mascot` with `object-fit: contain`, no frame and a restrained drop shadow.
 - [ ] Add the dark `.site-footer` with bottom clearance for the fixed menu.
@@ -90,7 +96,7 @@
 ### Task 5: Publish and verify production
 
 **Files:**
-- Commit only the files listed above and the two plan/spec documents.
+- Commit only the files listed above, the three supplied assets and the two plan/spec documents.
 
 **Interfaces:**
 - Consumes: verified main-branch changes and the linked Vercel project.

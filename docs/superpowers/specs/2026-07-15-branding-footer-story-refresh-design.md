@@ -9,6 +9,7 @@ Refine the existing Candela landing page with the approved “Modas Candela” h
 - Hero composition: `/Users/danielcastosa/Desktop/Screenshot 2026-07-15 at 22.40.16.png`.
 - Favicon: `/Users/danielcastosa/Desktop/fav-icon (candela).png`.
 - Story mascot: `/Users/danielcastosa/Downloads/de9018f5b59f5591f0076a142352d0bc.png`.
+- Decorative header logo: `/Users/danielcastosa/Downloads/4956e27b-1640-4004-953f-8a738f0aeb7e.png`.
 - Existing site palette, typography, assets and responsive patterns remain the implementation baseline.
 
 ## Design decisions
@@ -16,6 +17,12 @@ Refine the existing Candela landing page with the approved “Modas Candela” h
 ### Hero
 
 Remove “Moda con alma, estilo con luz.” completely. Place “Modas” immediately above “Candela” inside one lower-left wordmark group. Both words use Molle and the existing pink accent so the new line reads as part of the same identity. The supplied mannequin and menu retain their current roles and the hero still has no active navigation item.
+
+Place the supplied transparent illustrated logo in the upper-left corner as a separate brand signature. It must remain fully visible and proportionally scaled at desktop and mobile sizes without colliding with the mannequin or lower wordmark.
+
+### Navigation labels
+
+Replace the numbered labels with one-word descriptions while preserving targets and scrollspy behavior: `Historia`, `Productos` and `Ubicación`.
 
 ### Favicon
 
@@ -33,6 +40,7 @@ Add a full-width dark footer after section 3. Use the existing ink token as the 
 
 - No horizontal overflow at 390×844.
 - “Modas” and “Candela” remain fully visible on mobile.
+- The upper-left logo remains inside the viewport on mobile.
 - Mascot alt text: `Personaje vegetal de Modas Candela`.
 - Footer is a semantic `footer` with visible copyright text.
 - Existing focus styles, reduced-motion behavior and scrollspy remain unchanged.
@@ -44,4 +52,3 @@ Add a full-width dark footer after section 3. Use the existing ink token as the 
 - Hero render is compared side by side with the supplied annotated hero reference.
 - Story render is compared with the existing section reference and the supplied mascot source.
 - The final `design-qa.md` must end with `final result: passed`.
-

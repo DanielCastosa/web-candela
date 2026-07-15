@@ -6,10 +6,21 @@ test.beforeEach(async ({ page }) => {
 
 test("renders the editorial hero with no navigation item selected", async ({ page }) => {
   await expect(page.locator("#hero")).toHaveCSS("background-color", "rgb(255, 228, 237)");
+  await expect(page.getByText("Modas", { exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Candela", level: 1 })).toBeVisible();
+  await expect(page.getByRole("img", { name: "Logo de Modas Candela" })).toBeVisible();
+  await expect(page.getByText("Moda con alma,", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("img", { name: "Maniquí con vestido de satén" })).toBeVisible();
   await expect(page.locator(".floating-nav")).toHaveCSS("background-color", "rgb(255, 228, 237)");
   await expect(page.locator('.floating-nav__item[aria-current="page"]')).toHaveCount(0);
+});
+
+test("configures the supplied Candela favicon", async ({ page }) => {
+  const favicon = page.locator('link[rel="icon"]');
+
+  await expect(favicon).toHaveAttribute("href", "/favicon.png");
+  await expect(favicon).toHaveAttribute("type", "image/png");
+  await expect(favicon).toHaveAttribute("sizes", "150x150");
 });
 
 test("renders the exact section palette", async ({ page }) => {
@@ -32,6 +43,13 @@ test("renders the origin story with the approved copy and title treatment", asyn
     "font-family",
     "Molle, cursive",
   );
+  await expect(page.getByRole("img", { name: "Personaje vegetal de Modas Candela" })).toBeVisible();
+});
+
+test("renders the dark Modas Candela copyright footer", async ({ page }) => {
+  await page.locator(".site-footer").evaluate((footer) => footer.scrollIntoView());
+  await expect(page.getByText("© 2026 Modas Candela", { exact: true })).toBeVisible();
+  await expect(page.locator(".site-footer")).toHaveCSS("background-color", "rgb(51, 37, 42)");
 });
 
 test("renders six pastel products between two floating mannequins", async ({ page }) => {
@@ -77,9 +95,10 @@ test("keeps the populated sections inside a mobile viewport", async ({ page }) =
 });
 
 test("clicking navigation scrolls and updates the selected section", async ({ page }) => {
-  await page.getByRole("link", { name: "sección 2" }).click();
-  await expect(page.getByRole("link", { name: "sección 2" })).toHaveAttribute("aria-current", "page");
-  await expect(page.getByRole("link", { name: "sección 2" })).toHaveCSS(
+  await expect(page.locator(".floating-nav__item")).toHaveText(["Historia", "Productos", "Ubicación"]);
+  await page.getByRole("link", { name: "Productos" }).click();
+  await expect(page.getByRole("link", { name: "Productos" })).toHaveAttribute("aria-current", "page");
+  await expect(page.getByRole("link", { name: "Productos" })).toHaveCSS(
     "background-color",
     "rgb(120, 78, 166)",
   );
@@ -89,10 +108,10 @@ test("clicking navigation scrolls and updates the selected section", async ({ pa
 
 test("manual scrolling updates the selected section", async ({ page }) => {
   await page.locator("#section-3").evaluate((section) => section.scrollIntoView());
-  await expect(page.getByRole("link", { name: "sección 3" })).toHaveAttribute("aria-current", "page");
+  await expect(page.getByRole("link", { name: "Ubicación" })).toHaveAttribute("aria-current", "page");
 
   await page.locator("#section-1").evaluate((section) => section.scrollIntoView());
-  await expect(page.getByRole("link", { name: "sección 1" })).toHaveAttribute("aria-current", "page");
+  await expect(page.getByRole("link", { name: "Historia" })).toHaveAttribute("aria-current", "page");
 
   await page.locator("#hero").evaluate((section) => section.scrollIntoView());
   await expect(page.locator('.floating-nav__item[aria-current="page"]')).toHaveCount(0);
@@ -102,13 +121,32 @@ test("the hero artwork and floating navigation stay inside a mobile viewport", a
   await page.setViewportSize({ width: 390, height: 844 });
   const bounds = await page.locator(".floating-nav").boundingBox();
   const artworkBounds = await page.locator(".hero__mannequin").boundingBox();
+  const prefixBounds = await page.locator(".hero__brand-prefix").boundingBox();
+  const titleBounds = await page.locator(".hero__title").boundingBox();
+  const logoBounds = await page.getByRole("img", { name: "Logo de Modas Candela" }).boundingBox();
 
   expect(bounds).not.toBeNull();
   expect(artworkBounds).not.toBeNull();
+  expect(prefixBounds).not.toBeNull();
+  expect(titleBounds).not.toBeNull();
+  expect(logoBounds).not.toBeNull();
   expect(bounds!.x).toBeGreaterThanOrEqual(16);
   expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(374);
   expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(828);
   expect(artworkBounds!.x).toBeGreaterThanOrEqual(0);
   expect(artworkBounds!.x + artworkBounds!.width).toBeLessThanOrEqual(390);
+  expect(prefixBounds!.x + prefixBounds!.width).toBeLessThanOrEqual(390);
+  expect(titleBounds!.x + titleBounds!.width).toBeLessThanOrEqual(390);
+  expect(logoBounds!.x).toBeGreaterThanOrEqual(0);
+  expect(logoBounds!.x + logoBounds!.width).toBeLessThanOrEqual(390);
+  expect(logoBounds!.y).toBeGreaterThanOrEqual(0);
+
+  await page.locator("#section-1").evaluate((section) => section.scrollIntoView());
+  const mascotBounds = await page
+    .getByRole("img", { name: "Personaje vegetal de Modas Candela" })
+    .boundingBox();
+  expect(mascotBounds).not.toBeNull();
+  expect(mascotBounds!.x).toBeGreaterThanOrEqual(0);
+  expect(mascotBounds!.x + mascotBounds!.width).toBeLessThanOrEqual(390);
   await expect(page.locator("body")).toHaveCSS("overflow-x", "hidden");
 });

@@ -6,8 +6,9 @@
     <meta name="theme-color" content="#FFE4ED" />
     <meta
       name="description"
-      content="Estudio Candela: moda con alma, estilo con luz."
+      content="Modas Candela: una historia de moda, familia y color."
     />
+    <link rel="icon" type="image/png" sizes="150x150" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,9 +20,19 @@
   <body>
     <main>
       <header id="hero" class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero__logo"
+          src="/candela-logo.png"
+          alt="Logo de Modas Candela"
+          width="1536"
+          height="1024"
+          fetchpriority="high"
+        />
         <div class="hero__content">
-          <p class="hero__subtitle">Moda con alma,<br />estilo con luz.</p>
-          <h1 id="hero-title" class="hero__title">Candela</h1>
+          <div class="hero__wordmark">
+            <p class="hero__brand-prefix">Modas</p>
+            <h1 id="hero-title" class="hero__title">Candela</h1>
+          </div>
         </div>
         <img
           class="hero__mannequin"
@@ -43,9 +54,19 @@
             <i class="ph-fill ph-heart section-heading__heart" aria-hidden="true"></i>
             <h2 id="story-title" class="section-heading__title">¿Cómo nacimos?</h2>
           </div>
-          <p class="story__copy">
-            Con el sueño de una niña de 10 años construimos nuestros almacenes y la gran familia.
-          </p>
+          <div class="story__body">
+            <p class="story__copy">
+              Con el sueño de una niña de 10 años construimos nuestros almacenes y la gran familia.
+            </p>
+            <img
+              class="story__mascot"
+              src="/candela-leaf-mascot.png"
+              alt="Personaje vegetal de Modas Candela"
+              width="700"
+              height="700"
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 
@@ -166,10 +187,14 @@
       </section>
     </main>
 
+    <footer class="site-footer">
+      <p>© 2026 Modas Candela</p>
+    </footer>
+
     <nav class="floating-nav" aria-label="Navegación por secciones">
-      <a class="floating-nav__item" href="#section-1" data-section-id="section-1">sección 1</a>
-      <a class="floating-nav__item" href="#section-2" data-section-id="section-2">sección 2</a>
-      <a class="floating-nav__item" href="#section-3" data-section-id="section-3">sección 3</a>
+      <a class="floating-nav__item" href="#section-1" data-section-id="section-1">Historia</a>
+      <a class="floating-nav__item" href="#section-2" data-section-id="section-2">Productos</a>
+      <a class="floating-nav__item" href="#section-3" data-section-id="section-3">Ubicación</a>
     </nav>
 
     <script type="module" src="/src/main.ts"></script>
